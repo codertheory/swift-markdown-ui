@@ -1,4 +1,5 @@
 import Foundation
+import _Parser
 
 extension InlineNode {
   func renderAttributedString(

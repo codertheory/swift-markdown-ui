@@ -1,4 +1,5 @@
 import SwiftUI
+import _Parser
 
 extension Sequence where Element == InlineNode {
   func renderText(

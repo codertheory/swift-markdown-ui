@@ -20,13 +20,19 @@ let package = Package(
   dependencies: [
     .package(url: "https://github.com/gonzalezreal/NetworkImage", from: "6.0.0"),
     .package(url: "https://github.com/pointfreeco/swift-snapshot-testing", from: "1.10.0"),
+    .package(url: "https://github.com/apple/swift-markdown.git", from: "0.3.0"),
   ],
   targets: [
-    .target(name: "cmark-gfm"),
+    .target(
+        name: "_Parser",
+        dependencies: [
+            .product(name: "Markdown", package: "swift-markdown"),
+        ]
+    ),
     .target(
       name: "MarkdownUI",
       dependencies: [
-        "cmark-gfm",
+        "_Parser",
         .product(name: "NetworkImage", package: "NetworkImage"),
       ]
     ),

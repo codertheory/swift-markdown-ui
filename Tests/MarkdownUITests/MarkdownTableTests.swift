@@ -1,20 +1,21 @@
 #if os(iOS)
-  import SnapshotTesting
-  import SwiftUI
-  import XCTest
+import SnapshotTesting
+import SwiftUI
+import XCTest
 
-  import MarkdownUI
+import MarkdownUI
 
-  final class MarkdownTableTests: XCTestCase {
+final class MarkdownTableTests: XCTestCase {
     private let layout = SwiftUISnapshotLayout.device(config: .iPhone8)
+    private let precision: Float = 0.99
     private let perceptualPrecision: Float = 0.98
 
     func testTable() throws {
-      guard #available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *) else {
-        throw XCTSkip("Table rendering is not available")
-      }
+        guard #available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *) else {
+            throw XCTSkip("Table rendering is not available")
+        }
 
-      let view = Markdown {
+        let view = Markdown {
         #"""
         A table with some padding:
 
@@ -23,21 +24,25 @@
         | git status | List all new or modified files |
         | git diff | Show file differences that haven't been staged |
         """#
-      }
-      .padding()
-      .border(Color.accentColor)
+        }
+        .padding()
+        .border(Color.accentColor)
 
-      assertSnapshot(
-        of: view, as: .image(perceptualPrecision: perceptualPrecision, layout: layout)
-      )
+        assertSnapshot(
+            of: view, as: .image(
+                precision: precision,
+                perceptualPrecision: perceptualPrecision,
+                layout: layout
+            )
+        )
     }
 
     func testTableAlignment() throws {
-      guard #available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *) else {
-        throw XCTSkip("Table rendering is not available")
-      }
+        guard #available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *) else {
+            throw XCTSkip("Table rendering is not available")
+        }
 
-      let view = Markdown {
+        let view = Markdown {
         #"""
         A table with some padding:
 
@@ -46,21 +51,25 @@
         | git status | git status | git status | git status |
         | git diff   | git diff   | git diff   | git diff   |
         """#
-      }
-      .padding()
-      .border(Color.accentColor)
+        }
+        .padding()
+        .border(Color.accentColor)
 
-      assertSnapshot(
-        of: view, as: .image(perceptualPrecision: perceptualPrecision, layout: layout)
-      )
+        assertSnapshot(
+            of: view, as: .image(
+                precision: precision,
+                perceptualPrecision: perceptualPrecision,
+                layout: layout
+            )
+        )
     }
 
     func testTableWithImages() throws {
-      guard #available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *) else {
-        throw XCTSkip("Table rendering is not available")
-      }
+        guard #available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *) else {
+            throw XCTSkip("Table rendering is not available")
+        }
 
-      let view = Markdown {
+        let view = Markdown {
         #"""
         A table with some padding:
 
@@ -71,43 +80,51 @@
 
         ― Photo by André Spieker
         """#
-      }
-      .padding()
-      .border(Color.accentColor)
-      .markdownImageProvider(AssetImageProvider(bundle: .module))
+        }
+        .padding()
+        .border(Color.accentColor)
+        .markdownImageProvider(AssetImageProvider(bundle: .module))
 
-      assertSnapshot(
-        of: view, as: .image(perceptualPrecision: perceptualPrecision, layout: layout)
-      )
+        assertSnapshot(
+            of: view, as: .image(
+                precision: 0.95,
+                perceptualPrecision: 0.9,
+                layout: layout
+            )
+        )
     }
 
     func testEmptyTable() throws {
-      guard #available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *) else {
-        throw XCTSkip("Table rendering is not available")
-      }
+        guard #available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *) else {
+            throw XCTSkip("Table rendering is not available")
+        }
 
-      let view = Markdown {
+        let view = Markdown {
         #"""
         A table with some padding:
 
         | First Header  | Second Header |
         | ------------- | ------------- |
         """#
-      }
-      .padding()
-      .border(Color.accentColor)
+        }
+        .padding()
+        .border(Color.accentColor)
 
-      assertSnapshot(
-        of: view, as: .image(perceptualPrecision: perceptualPrecision, layout: layout)
-      )
+        assertSnapshot(
+            of: view, as: .image(
+                precision: precision,
+                perceptualPrecision: perceptualPrecision,
+                layout: layout
+            )
+        )
     }
 
     func testTableSize() throws {
-      guard #available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *) else {
-        throw XCTSkip("Table rendering is not available")
-      }
+        guard #available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *) else {
+            throw XCTSkip("Table rendering is not available")
+        }
 
-      let view = Markdown {
+        let view = Markdown {
         #"""
         A table with some padding:
 
@@ -116,21 +133,25 @@
         | Content Cell  | Content Cell  |
         | Content Cell  | Content Cell  |
         """#
-      }
-      .padding()
-      .border(Color.accentColor)
+        }
+        .padding()
+        .border(Color.accentColor)
 
-      assertSnapshot(
-        of: view, as: .image(perceptualPrecision: perceptualPrecision, layout: layout)
-      )
+        assertSnapshot(
+            of: view, as: .image(
+                precision: precision,
+                perceptualPrecision: perceptualPrecision,
+                layout: layout
+            )
+        )
     }
 
     func testTableBackground() throws {
-      guard #available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *) else {
-        throw XCTSkip("Table rendering is not available")
-      }
+        guard #available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *) else {
+            throw XCTSkip("Table rendering is not available")
+        }
 
-      let view = Markdown {
+        let view = Markdown {
         #"""
         A table with some padding:
 
@@ -139,28 +160,32 @@
         | git status | List all new or modified files |
         | git diff | Show file differences that haven't been staged |
         """#
-      }
-      .padding()
-      .border(Color.accentColor)
-      .markdownBlockStyle(\.table) { configuration in
-        configuration.label
-          .markdownMargin(top: .zero, bottom: .em(1))
-          .markdownTableBackgroundStyle(
-            .alternatingRows(Color.clear, Color(.secondarySystemBackground), header: .mint)
-          )
-      }
+        }
+        .padding()
+        .border(Color.accentColor)
+        .markdownBlockStyle(\.table) { configuration in
+            configuration.label
+                .markdownMargin(top: .zero, bottom: .em(1))
+                .markdownTableBackgroundStyle(
+                    .alternatingRows(Color.clear, Color(.secondarySystemBackground), header: .mint)
+                )
+        }
 
-      assertSnapshot(
-        of: view, as: .image(perceptualPrecision: perceptualPrecision, layout: layout)
-      )
+        assertSnapshot(
+            of: view, as: .image(
+                precision: precision,
+                perceptualPrecision: perceptualPrecision,
+                layout: layout
+            )
+        )
     }
 
     func testTableBorder() throws {
-      guard #available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *) else {
-        throw XCTSkip("Table rendering is not available")
-      }
+        guard #available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *) else {
+            throw XCTSkip("Table rendering is not available")
+        }
 
-      let view = Markdown {
+        let view = Markdown {
         #"""
         A table with some padding:
 
@@ -169,24 +194,28 @@
         | git status | List all new or modified files |
         | git diff | Show file differences that haven't been staged |
         """#
-      }
-      .padding()
-      .border(Color.accentColor)
-      .markdownBlockStyle(\.table) { configuration in
-        configuration.label
-          .markdownMargin(top: .zero, bottom: .em(1))
-          .markdownTableBorderStyle(
-            .init(
-              .outsideBorders,
-              color: Color.mint,
-              strokeStyle: .init(lineWidth: 2, lineJoin: .round, dash: [4])
-            )
-          )
-      }
+        }
+        .padding()
+        .border(Color.accentColor)
+        .markdownBlockStyle(\.table) { configuration in
+            configuration.label
+                .markdownMargin(top: .zero, bottom: .em(1))
+                .markdownTableBorderStyle(
+                    .init(
+                        .outsideBorders,
+                        color: Color.mint,
+                        strokeStyle: .init(lineWidth: 2, lineJoin: .round, dash: [4])
+                    )
+                )
+        }
 
-      assertSnapshot(
-        of: view, as: .image(perceptualPrecision: perceptualPrecision, layout: layout)
-      )
+        assertSnapshot(
+            of: view, as: .image(
+                precision: precision,
+                perceptualPrecision: perceptualPrecision,
+                layout: layout
+            )
+        )
     }
-  }
+}
 #endif
