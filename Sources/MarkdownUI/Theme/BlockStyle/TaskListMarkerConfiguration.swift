@@ -7,6 +7,7 @@ import SwiftUI
 public struct TaskListMarkerConfiguration {
   /// Determines whether the item to which the marker applies is completed or not.
   public let isCompleted: Bool
+  public let content: String
 }
 
 extension BlockStyle where Configuration == TaskListMarkerConfiguration {
